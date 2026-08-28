@@ -14,6 +14,8 @@ Google Colab 上で C++ をコンパイル・実行します。環境構築は�
 | **1** | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex01_threads.ipynb) **スレッドとパイプライン** | [解答](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex01_threads_answer.ipynb) | プロセスとスレッドの違い、`thread` / `join`、レイテンシとスループット、パイプライン |
 | **2** | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex02_race.ipynb) **データ競合** | [解答](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex02_race_answer.ipynb) | 共有データが壊れる様子、`atomic` で足りる場合と足りない場合 |
 | **3** | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex03_mutex.ipynb) **`mutex` で守る** | [解答](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex03_mutex_answer.ipynb) | `mutex` / `lock_guard` / RAII、ロック区間の広さと速度 |
+| **4** | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex04_queue_wait.ipynb) **待ち合わせ** | [解答](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex04_queue_wait_answer.ipynb) | ビジーウェイトとポーリングの無駄、`condition_variable`、述語がなぜ要るか |
+| **5** | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex05_bounded_queue.ipynb) **スレッドセーフなキュー** | [解答](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex05_bounded_queue_answer.ipynb) | 鍵1本＋条件変数2本、容量つきキューを最初から最後まで組み立てる |
 
 > 💡 **新しいタブで開きたいときは、バッジを `Ctrl`（Mac は `⌘`）を押しながらクリック**してください。
 > マウスの中ボタン（ホイール）クリックでも同じです。
@@ -78,16 +80,27 @@ ex02_race.ipynb             演習2  データ競合
 ex02_race_answer.ipynb      演習2  解答編
 ex03_mutex.ipynb            演習3  mutex で守る
 ex03_mutex_answer.ipynb     演習3  解答編
+ex04_queue_wait.ipynb       演習4  待ち合わせ
+ex04_queue_wait_answer.ipynb        演習4  解答編
+ex05_bounded_queue.ipynb    演習5  スレッドセーフなキュー
+ex05_bounded_queue_answer.ipynb     演習5  解答編
 src/                        本番で使う C++ ソース
 ```
 
 `.ipynb` が原本です。修正は Colab または Jupyter で直接行ってください。
-=======
+---
+
+## リンク一覧
+
 Colab Notebooks for executing C++ code.
 
  [実習1: threads](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex01_threads.ipynb)  
  [実習1: 発展課題解答](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex01_threads_answer.ipynb)  
- [実習2: race](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex01_race.ipynb)  
- [実習2: 発展課題解答](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex01_race_answer.ipynb)  
- [実習3: mutex](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex01_mutex.ipynb)  
- [実習3: 発展課題解答](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex01_mutex_answer.ipynb)  
+ [実習2: race](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex02_race.ipynb)  
+ [実習2: 発展課題解答](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex02_race_answer.ipynb)  
+ [実習3: mutex](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex03_mutex.ipynb)  
+ [実習3: 発展課題解答](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex03_mutex_answer.ipynb)  
+ [実習4: queue_wait](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex04_queue_wait.ipynb)  
+ [実習4: 発展課題解答](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex04_queue_wait_answer.ipynb)  
+ [実習5: bounded_queue](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex05_bounded_queue.ipynb)  
+ [実習5: 発展課題解答](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex05_bounded_queue_answer.ipynb)  
