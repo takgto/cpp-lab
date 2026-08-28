@@ -76,7 +76,7 @@ private:
     std::queue<T> queue_;
     size_type capacity_;
 
-    std::mutex mtx_;
+    mutable std::mutex mtx_;
     std::condition_variable can_pop_;
     std::condition_variable can_push_;
 public:
@@ -105,7 +105,11 @@ public:
         can_push_.notify_one();
         return value;
     }
-    int size() {return queue_.size();}
+    //int size() {return queue_.size();} // old version changed in Aug27-2026 TG
+    size_type size() const {
+        std::lock_guard<std::mutex> guard(mtx_);
+        return queue_.size();
+    }
 };
 
 void readFrame(const char* fileName, concurrent_queue<imagePair>& out) {
