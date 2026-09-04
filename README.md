@@ -5,40 +5,75 @@ Google Colab 上で C++ をコンパイル・実行します。環境構築は�
 
 ---
 
-## 演習
+## 演習（本編）
 
-各行の左のバッジを押すと Colab が開きます。**上のセルから順に ▶ を押していく**だけです。
+バッジを押すと Colab が開きます。**上のセルから順に ▶ を押していく**だけです。
 
-| | 演習 | 解答編 | 学ぶこと |
-|---|---|---|---|
-| **1** | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex01_threads.ipynb) **スレッドとパイプライン** | [解答](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex01_threads_answer.ipynb) | プロセスとスレッドの違い、`thread` / `join`、レイテンシとスループット、パイプライン |
-| **2** | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex02_race.ipynb) **データ競合** | [解答](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex02_race_answer.ipynb) | 共有データが壊れる様子、`atomic` で足りる場合と足りない場合 |
-| **3** | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex03_mutex.ipynb) **`mutex` で守る** | [解答](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex03_mutex_answer.ipynb) | `mutex` / `lock_guard` / RAII、ロック区間の広さと速度 |
-| **4** | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex04_queue_wait.ipynb) **待ち合わせ** | [解答](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex04_queue_wait_answer.ipynb) | ビジーウェイトとポーリングの無駄、`condition_variable`、述語がなぜ要るか |
-| **5** | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex05_bounded_queue.ipynb) **スレッドセーフなキュー** | [解答](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex05_bounded_queue_answer.ipynb) | 鍵1本＋条件変数2本、容量つきキューを最初から最後まで組み立てる |
-| **6** | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex06_backpressure.ipynb) **容量とバックプレッシャ** | [解答](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex06_backpressure_answer.ipynb) | 容量で変わるもの・変わらないもの、遅れとメモリ、キュー長でボトルネックを当てる |
-| **7** | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex07_pipeline.ipynb) **パイプラインを組む** | [解答](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex07_pipeline_answer.ipynb) | 2つの上限（一番遅い段とコア数）、ボトルネックの移動、どう速くしていくか |
-| **8** | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex08_ordering.ipynb) **並列化すると順序が崩れる** | [解答](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex08_ordering_answer.ipynb) | 並列化の副作用、番号を持たせる、出口で並べ直す |
-| **9** | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex09_shutdown.ipynb) **安全な終了** | [解答](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex09_shutdown_answer.ipynb) | 終了を下流へ伝える、キューを閉じる／番兵、`join()` が返る形にする |
-| **10** | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex10_measure.ipynb) **壊さないように測る** | [解答](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex10_measure_answer.ipynb) | 計測の値段、計測外、直列で測って組んで確かめる |
+| | 演習 | 学ぶこと |
+|---|---|---|
+| **1** | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex01_threads.ipynb) **スレッドとパイプライン** | `thread` / `join`、待つ仕事と計算する仕事、レイテンシとスループット、ボトルネック |
+| **2** | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex02_queue.ipynb) **スレッドセーフなキューを使う** | 守らない共有は壊れる、`push` / `pop` / `size`、容量とバックプレッシャ |
+| **3** | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex03_pipeline.ipynb) **パイプラインを組んで、速くする** | 容量の決め方、バックプレッシャ、2つの上限（一番遅い段とマシンの計算力） |
+| **4** | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex04_measure.ipynb) **壊さないように測る** | 測る値段、計測外、5つの作法、直列で測ってから組んで確かめる |
 
-> 💡 **新しいタブで開きたいときは、バッジを `Ctrl`（Mac は `⌘`）を押しながらクリック**してください。
-> マウスの中ボタン（ホイール）クリックでも同じです。
+> 💡 新しいタブで開きたいときは、バッジを `Ctrl`（Mac は `⌘`）を押しながらクリックしてください。
 
----
-
-## 進め方
+### 進め方
 
 1. バッジを押して Colab を開く
 2. **上のセルから順に ▶ を押す**
 3. 「**予測クイズ**」が出てきたら、**実行する前に必ず自分で予測**する ―― 予測が外れることに意味があります
-4. 一通り終えたら、**解答編**で答え合わせをする
 
-各演習は 20〜30分程度です。全10回で、およそ4〜5時間を見込んでください。
-
-> ⏱ 演習3・4・5・8・9 には、**デッドロックや終了漏れをわざと見せるセル**があります。
+> ⏱ 一部のセルには、**デッドロックや終了漏れをわざと見せるセル**があります。
 > `timeout 5 ./xxx` で時間を区切ってあるので Colab が固まることはありません。
 > **終了コード 124 が「止まった」印**です。
+
+---
+
+## 発展課題（補足）
+
+**本編を終えてから、興味のあるものだけ選んでください。全部やる必要はありません。**
+各問は「問題 → 実験 → 解答」の順に並んでいます。**問題を読んだら、まず自分で予測**してください。
+
+### 発展課題1 ―― スレッドとパイプライン
+
+| | 問題 | |
+|---|---|---|
+| 1-1 | 各段が **Read=13ms / Infer=67ms / Show=33ms** のとき、3フレームを直列とパイプラインで処理すると何 ms か。ボトルネックはどの段で、上限は何 FPS か。**Infer だけを 2ms に**したら、ボトルネックはどこへ移り、上限 FPS は何倍になるか | [解答へ](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/adv01_threads.ipynb#scrollTo=adv01_threads_02) |
+| 1-2 | `ex01a.cpp` から `t1.join(); t2.join();` を消すと何が起きるか。なぜそうなるのか | [解答へ](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/adv01_threads.ipynb#scrollTo=adv01_threads_06) |
+| 1-3 | `hardware_concurrency()` が **2** のマシンで、**計算しかしない仕事**（1本 300ms 分）のスレッドを **3本** 立てた。3本目は動かずに待たされるのか。全部で何 ms か。3本は同時に終わるのか、順に終わるのか。**待つだけの仕事**なら答えは変わるか | [解答へ](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/adv01_threads.ipynb#scrollTo=adv01_threads_10) |
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/adv01_threads.ipynb) `adv01_threads.ipynb`
+
+### 発展課題2 ―― スレッドセーフなキュー
+
+| | 問題 | |
+|---|---|---|
+| 2-1 | キューに3個までしか入れたくないので `if (q.size() < 3) q.push(x);` と書いた。`size()` も `push()` も鍵で守られている。**期待どおり動くか** | [解答へ](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/adv02_queue.ipynb#scrollTo=adv02_queue_04) |
+| 2-2 | `ConcurrentQueue` が持つ条件変数2本（`can_pop_` / `can_push_`）を**1本にまとめたら**どうなるか。`notify_one()` と `notify_all()` で答えは変わるか | [解答へ](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/adv02_queue.ipynb#scrollTo=adv02_queue_08) |
+| 2-3 | `pop()` は空なら待つ。では**待たない `try_pop()`** が要るのはどんな場面か。逆に**待つ形**が要るのはどんな場面か | [解答へ](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/adv02_queue.ipynb#scrollTo=adv02_queue_10) |
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/adv02_queue.ipynb) `adv02_queue.ipynb`
+
+### 発展課題3 ―― パイプラインを組む
+
+| | 問題 | |
+|---|---|---|
+| 3-1 | Read 10ms / Infer 60ms / Show 30ms の仕事を **3段パイプライン**（構成②）にしたら、直列（構成①）の何倍になるか。3倍になるか。ならないなら、決めているのは何か | [解答へ](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/adv03_pipeline.ipynb#scrollTo=adv03_pipeline_05) |
+| 3-2 | 一番遅い段（Infer）を **2人**に増やす（構成③）。上限A は 16.7 → 33.3 と倍になるのに、実測FPS も倍になるか。ならないなら**上限A と 上限B のどちらで止まっているか**を見分ける | [解答へ](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/adv03_pipeline.ipynb#scrollTo=adv03_pipeline_09) |
+| 3-3 | 3段パイプラインのキュー2本の**長さを見るだけ**で、どの段がボトルネックか言い当てられるか。Infer が遅いとき／Show が遅いとき／Read が遅いとき、それぞれ2本はどうなるか | [解答へ](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/adv03_pipeline.ipynb#scrollTo=adv03_pipeline_13) |
+| 付録 | **速度倍率の測り方** ―― 同じ計算を1本／2本／3本／4本でやって時間を比べる。自分のマシンの倍率がそのまま出る（演習3-2 の 上限B の分母に使う） | [付録へ](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/adv03_pipeline.ipynb#scrollTo=adv03_pipeline_14) |
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/adv03_pipeline.ipynb) `adv03_pipeline.ipynb`
+
+### 発展課題4 ―― 壊さないように測る
+
+| | 問題 | |
+|---|---|---|
+| 4-1 | 演習4-3 の3段パイプライン（30 FPS、犯人は Show）で、**Show を 30ms → 10ms** に速くしたら FPS はいくつになるか。3倍の 90 FPS になるか。犯人はどの段へ移り、`取り出し待ち` / `正味` / `入れ待ち` の3列はどう変わるか | [解答へ](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/adv04_measure.ipynb#scrollTo=adv04_measure_05) |
+| 4-2 | シリアルコンソール（**115200 baud**）で1行 36 バイトのデバッグ表示を**1フレームに4行**出すと、1フレームあたり何 ms 増えるか。1フレーム 82ms の処理と 13ms の処理で、それぞれ何%か。表示を**計測区間の外**に置いた場合、各段の測定値は正しいままか。ではどうやって気づくか | [解答へ](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/adv04_measure.ipynb#scrollTo=adv04_measure_07) |
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/adv04_measure.ipynb) `adv04_measure.ipynb`
 
 ---
 
@@ -55,82 +90,36 @@ Google Colab 上で C++ をコンパイル・実行します。環境構築は�
 並行処理は、文法を知っていても挙動が予測できないところに難しさがあります。
 そのため「動かして、予測を外して、理由を考える」形式にしてあります。
 
----
-
-## 実行結果が毎回変わることについて
+### 実行結果が毎回変わることについて
 
 **同じプログラムを実行しても結果が変わる**ことがあります。故障ではなく、並行処理の本質です。
 
 - スレッドがどの順で動くかは OS が決めるため、実行ごとに変わります
-- マシンのコア数（`std::thread::hardware_concurrency()` で確認できます）によっても変わります
-- 演習2 のプログラムは**異常終了することがあります**。それも観察結果の1つです
+- マシンのコア数（`std::thread::hardware_concurrency()`）によっても変わります
 
 **「動いたから正しい」が通用しない**こと自体を体験するのが狙いです。
-
----
-
-## この先（ハッカソン本番）
-
-本番では、KV260 上で動く次の2つのプログラムを読み、改造します。
-
-- `yolov3_video_series_prof.cpp` ― 1フレームずつ直列に処理し、各段の時間を測るプロファイリング版
-- `yolov3_video_study.cpp` ― 4スレッド + キュー2本でパイプライン化した版
-
-この演習を終えてから読むと、「なぜこの構成なのか」を自分で説明できるようになっているはずです。
 
 ---
 
 ## リポジトリの構成
 
 ```
-ex01_threads.ipynb                  演習1  スレッドとパイプライン
-ex01_threads_answer.ipynb           演習1  解答編
-ex02_race.ipynb                     演習2  データ競合
-ex02_race_answer.ipynb              演習2  解答編
-ex03_mutex.ipynb                    演習3  mutex で守る
-ex03_mutex_answer.ipynb             演習3  解答編
-ex04_queue_wait.ipynb               演習4  待ち合わせ
-ex04_queue_wait_answer.ipynb        演習4  解答編
-ex05_bounded_queue.ipynb            演習5  スレッドセーフなキュー
-ex05_bounded_queue_answer.ipynb     演習5  解答編
-ex06_backpressure.ipynb             演習6  容量とバックプレッシャ
-ex06_backpressure_answer.ipynb      演習6  解答編
-ex07_pipeline.ipynb                 演習7  パイプラインを組む
-ex07_pipeline_answer.ipynb          演習7  解答編
-ex08_ordering.ipynb                 演習8  並列化すると順序が崩れる
-ex08_ordering_answer.ipynb          演習8  解答編
-ex09_shutdown.ipynb                 演習9  安全な終了
-ex09_shutdown_answer.ipynb          演習9  解答編
-ex10_measure.ipynb                  演習10 壊さないように測る
-ex10_measure_answer.ipynb           演習10 解答編
-src/                                本番で使う C++ ソース
+ex01_threads.ipynb              演習1  スレッドとパイプライン
+ex02_queue.ipynb                演習2  スレッドセーフなキューを使う
+ex03_pipeline.ipynb             演習3  パイプラインを組んで、速くする
+ex04_measure.ipynb              演習4  壊さないように測る
+
+adv01_threads.ipynb             発展課題1（問題＋解答）
+adv02_queue.ipynb               発展課題2（問題＋解答）
+adv03_pipeline.ipynb            発展課題3（問題＋解答）
+adv04_measure.ipynb             発展課題4（問題＋解答）
+
+src/                            参考用の C++ ソース
+img/                            ノートブックに埋め込んだ図（原寸で見たいとき用）
 ```
 
-`.ipynb` が原本です。修正は Colab または Jupyter で直接行ってください。
+`cq.h`（`ConcurrentQueue`）を書き出すセルは、**各ノートブックの先頭に1回だけ**置いてあります。
+**最初にそのセルを実行**すれば、以降のプログラムは `#include "cq.h"` で使えます。
 
----
-
-## リンク一覧
-
-Colab Notebooks for executing C++ code.
-
- [実習1: threads](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex01_threads.ipynb)  
- [実習1: 発展課題解答](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex01_threads_answer.ipynb)  
- [実習2: race](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex02_race.ipynb)  
- [実習2: 発展課題解答](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex02_race_answer.ipynb)  
- [実習3: mutex](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex03_mutex.ipynb)  
- [実習3: 発展課題解答](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex03_mutex_answer.ipynb)  
- [実習4: queue_wait](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex04_queue_wait.ipynb)  
- [実習4: 発展課題解答](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex04_queue_wait_answer.ipynb)  
- [実習5: bounded_queue](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex05_bounded_queue.ipynb)  
- [実習5: 発展課題解答](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex05_bounded_queue_answer.ipynb)  
- [実習6: backpressure](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex06_backpressure.ipynb)  
- [実習6: 発展課題解答](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex06_backpressure_answer.ipynb)  
- [実習7: pipeline](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex07_pipeline.ipynb)  
- [実習7: 発展課題解答](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex07_pipeline_answer.ipynb)  
- [実習8: ordering](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex08_ordering.ipynb)  
- [実習8: 発展課題解答](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex08_ordering_answer.ipynb)  
- [実習9: shutdown](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex09_shutdown.ipynb)  
- [実習9: 発展課題解答](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex09_shutdown_answer.ipynb)  
- [実習10: measure](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex10_measure.ipynb)  
- [実習10: 発展課題解答](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/ex10_measure_answer.ipynb)
+`.ipynb` は生成物です。**Colab や Jupyter で直接直しても、次の配布で上書きされます。**
+誤りや改善点は配布元までご連絡ください。
