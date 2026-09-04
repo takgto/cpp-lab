@@ -37,41 +37,41 @@ Google Colab 上で C++ をコンパイル・実行します。環境構築は�
 
 ### 発展課題1 ―― スレッドとパイプライン
 
-| | 問題 | |
-|---|---|---|
-| 1-1 | 各段が **Read=13ms / Infer=67ms / Show=33ms** のとき、3フレームを直列とパイプラインで処理すると何 ms か。ボトルネックはどの段で、上限は何 FPS か。**Infer だけを 2ms に**したら、ボトルネックはどこへ移り、上限 FPS は何倍になるか | [解答へ](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/adv01_threads.ipynb#scrollTo=adv01_threads_02) |
-| 1-2 | `ex01a.cpp` から `t1.join(); t2.join();` を消すと何が起きるか。なぜそうなるのか | [解答へ](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/adv01_threads.ipynb#scrollTo=adv01_threads_06) |
-| 1-3 | `hardware_concurrency()` が **2** のマシンで、**計算しかしない仕事**（1本 300ms 分）のスレッドを **3本** 立てた。3本目は動かずに待たされるのか。全部で何 ms か。3本は同時に終わるのか、順に終わるのか。**待つだけの仕事**なら答えは変わるか | [解答へ](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/adv01_threads.ipynb#scrollTo=adv01_threads_10) |
+| 番号 | 問題 | 解答 |
+|:--:|---|:--:|
+| 1‑1 | 各段が **Read=13ms / Infer=67ms / Show=33ms** のとき、3フレームを直列とパイプラインで処理すると何 ms か。ボトルネックはどの段で、上限は何 FPS か。**Infer だけを 2ms に**したら、ボトルネックはどこへ移り、上限 FPS は何倍になるか | [解答](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/adv01_threads.ipynb#scrollTo=adv01_threads_02) |
+| 1‑2 | `ex01a.cpp` から `t1.join(); t2.join();` を消すと何が起きるか。なぜそうなるのか | [解答](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/adv01_threads.ipynb#scrollTo=adv01_threads_06) |
+| 1‑3 | `hardware_concurrency()` が **2** のマシンで、**計算しかしない仕事**（1本 300ms 分）のスレッドを **3本** 立てた。3本目は動かずに待たされるのか。全部で何 ms か。3本は同時に終わるのか、順に終わるのか。**待つだけの仕事**なら答えは変わるか | [解答](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/adv01_threads.ipynb#scrollTo=adv01_threads_10) |
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/adv01_threads.ipynb) `adv01_threads.ipynb`
 
 ### 発展課題2 ―― スレッドセーフなキュー
 
-| | 問題 | |
-|---|---|---|
-| 2-1 | キューに3個までしか入れたくないので `if (q.size() < 3) q.push(x);` と書いた。`size()` も `push()` も鍵で守られている。**期待どおり動くか** | [解答へ](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/adv02_queue.ipynb#scrollTo=adv02_queue_04) |
-| 2-2 | `ConcurrentQueue` が持つ条件変数2本（`can_pop_` / `can_push_`）を**1本にまとめたら**どうなるか。`notify_one()` と `notify_all()` で答えは変わるか | [解答へ](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/adv02_queue.ipynb#scrollTo=adv02_queue_08) |
-| 2-3 | `pop()` は空なら待つ。では**待たない `try_pop()`** が要るのはどんな場面か。逆に**待つ形**が要るのはどんな場面か | [解答へ](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/adv02_queue.ipynb#scrollTo=adv02_queue_10) |
+| 番号 | 問題 | 解答 |
+|:--:|---|:--:|
+| 2‑1 | キューに3個までしか入れたくないので `if (q.size() < 3) q.push(x);` と書いた。`size()` も `push()` も鍵で守られている。**期待どおり動くか** | [解答](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/adv02_queue.ipynb#scrollTo=adv02_queue_04) |
+| 2‑2 | `ConcurrentQueue` が持つ条件変数2本（`can_pop_` / `can_push_`）を**1本にまとめたら**どうなるか。`notify_one()` と `notify_all()` で答えは変わるか | [解答](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/adv02_queue.ipynb#scrollTo=adv02_queue_08) |
+| 2‑3 | `pop()` は空なら待つ。では**待たない `try_pop()`** が要るのはどんな場面か。逆に**待つ形**が要るのはどんな場面か | [解答](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/adv02_queue.ipynb#scrollTo=adv02_queue_10) |
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/adv02_queue.ipynb) `adv02_queue.ipynb`
 
 ### 発展課題3 ―― パイプラインを組む
 
-| | 問題 | |
-|---|---|---|
-| 3-1 | Read 10ms / Infer 60ms / Show 30ms の仕事を **3段パイプライン**（構成②）にしたら、直列（構成①）の何倍になるか。3倍になるか。ならないなら、決めているのは何か | [解答へ](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/adv03_pipeline.ipynb#scrollTo=adv03_pipeline_05) |
-| 3-2 | 一番遅い段（Infer）を **2人**に増やす（構成③）。上限A は 16.7 → 33.3 と倍になるのに、実測FPS も倍になるか。ならないなら**上限A と 上限B のどちらで止まっているか**を見分ける | [解答へ](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/adv03_pipeline.ipynb#scrollTo=adv03_pipeline_09) |
-| 3-3 | 3段パイプラインのキュー2本の**長さを見るだけ**で、どの段がボトルネックか言い当てられるか。Infer が遅いとき／Show が遅いとき／Read が遅いとき、それぞれ2本はどうなるか | [解答へ](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/adv03_pipeline.ipynb#scrollTo=adv03_pipeline_13) |
-| 付録 | **速度倍率の測り方** ―― 同じ計算を1本／2本／3本／4本でやって時間を比べる。自分のマシンの倍率がそのまま出る（演習3-2 の 上限B の分母に使う） | [付録へ](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/adv03_pipeline.ipynb#scrollTo=adv03_pipeline_14) |
+| 番号 | 問題 | 解答 |
+|:--:|---|:--:|
+| 3‑1 | Read 10ms / Infer 60ms / Show 30ms の仕事を **3段パイプライン**（構成②）にしたら、直列（構成①）の何倍になるか。3倍になるか。ならないなら、決めているのは何か | [解答](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/adv03_pipeline.ipynb#scrollTo=adv03_pipeline_05) |
+| 3‑2 | 一番遅い段（Infer）を **2人**に増やす（構成③）。上限A は 16.7 → 33.3 と倍になるのに、実測FPS も倍になるか。ならないなら**上限A と 上限B のどちらで止まっているか**を見分ける | [解答](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/adv03_pipeline.ipynb#scrollTo=adv03_pipeline_09) |
+| 3‑3 | 3段パイプラインのキュー2本の**長さを見るだけ**で、どの段がボトルネックか言い当てられるか。Infer が遅いとき／Show が遅いとき／Read が遅いとき、それぞれ2本はどうなるか | [解答](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/adv03_pipeline.ipynb#scrollTo=adv03_pipeline_13) |
+| 付録 | **速度倍率の測り方** ―― 同じ計算を1本／2本／3本／4本でやって時間を比べる。自分のマシンの倍率がそのまま出る（演習3-2 の 上限B の分母に使う） | [付録](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/adv03_pipeline.ipynb#scrollTo=adv03_pipeline_14) |
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/adv03_pipeline.ipynb) `adv03_pipeline.ipynb`
 
 ### 発展課題4 ―― 壊さないように測る
 
-| | 問題 | |
-|---|---|---|
-| 4-1 | 演習4-3 の3段パイプライン（30 FPS、犯人は Show）で、**Show を 30ms → 10ms** に速くしたら FPS はいくつになるか。3倍の 90 FPS になるか。犯人はどの段へ移り、`取り出し待ち` / `正味` / `入れ待ち` の3列はどう変わるか | [解答へ](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/adv04_measure.ipynb#scrollTo=adv04_measure_05) |
-| 4-2 | シリアルコンソール（**115200 baud**）で1行 36 バイトのデバッグ表示を**1フレームに4行**出すと、1フレームあたり何 ms 増えるか。1フレーム 82ms の処理と 13ms の処理で、それぞれ何%か。表示を**計測区間の外**に置いた場合、各段の測定値は正しいままか。ではどうやって気づくか | [解答へ](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/adv04_measure.ipynb#scrollTo=adv04_measure_07) |
+| 番号 | 問題 | 解答 |
+|:--:|---|:--:|
+| 4‑1 | 演習4-3 の3段パイプライン（30 FPS、犯人は Show）で、**Show を 30ms → 10ms** に速くしたら FPS はいくつになるか。3倍の 90 FPS になるか。犯人はどの段へ移り、`取り出し待ち` / `正味` / `入れ待ち` の3列はどう変わるか | [解答](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/adv04_measure.ipynb#scrollTo=adv04_measure_05) |
+| 4‑2 | シリアルコンソール（**115200 baud**）で1行 36 バイトのデバッグ表示を**1フレームに4行**出すと、1フレームあたり何 ms 増えるか。1フレーム 82ms の処理と 13ms の処理で、それぞれ何%か。表示を**計測区間の外**に置いた場合、各段の測定値は正しいままか。ではどうやって気づくか | [解答](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/adv04_measure.ipynb#scrollTo=adv04_measure_07) |
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/takgto/cpp-lab/blob/main/adv04_measure.ipynb) `adv04_measure.ipynb`
 
