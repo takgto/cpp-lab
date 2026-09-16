@@ -1,3 +1,2 @@
-*.o
-*.out
-app
+gen/figs/out/
+__pycache__/
